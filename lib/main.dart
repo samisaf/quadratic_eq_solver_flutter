@@ -101,19 +101,21 @@ class _QuadraticPlotterState extends State<QuadraticPlotter> with SingleTickerPr
   Widget _buildInputsTab() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            'This app helps solve and plot a quadratic function of the form ax² + bx + c = 0. Adjust the coefficients and graph bounds below.',
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 20),
-          Text("Enter equation coefficients"),
-          _buildCoefficientInputs(),
-          SizedBox(height: 10),
-          Text("Enter initial graph bounds"),
-          _buildChartBoundsInputs(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Text(
+              'This app helps solve and plot a quadratic function of the form ax² + bx + c = 0. Adjust the coefficients and graph bounds below.',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            Text("Enter equation coefficients"),
+            _buildCoefficientInputs(),
+            SizedBox(height: 10),
+            Text("Enter initial graph bounds"),
+            _buildChartBoundsInputs(),
+          ],
+        ),
       ),
     );
   }
