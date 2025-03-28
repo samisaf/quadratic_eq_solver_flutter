@@ -1,7 +1,7 @@
 {
     "name": "quadratic_eq_solver_flutter",
     "short_name": "quadratic_eq_solver_flutter",
-    "start_url": ".",
+    "start_url": "./quadratic_eq_solver_flutter",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
