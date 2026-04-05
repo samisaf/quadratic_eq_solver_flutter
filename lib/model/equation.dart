@@ -35,6 +35,41 @@ class Equation {
     dataPoints = _generateDataPoints();
   }
 
+  static Map<String, double> computeSensibleBounds(double a, double b, double c) {
+    if (a != 0) {
+      final double vx = -b / (2 * a);
+      final double vy = a * vx * vx + b * vx + c;
+      // Center X around vertex with range of 20
+      final double minX = vx - 10;
+      final double maxX = vx + 10;
+      // For Y, include vertex and some context depending on opening direction
+      double minY, maxY;
+      if (a > 0) {
+        minY = vy - 5;
+        maxY = vy + 35;
+      } else {
+        maxY = vy + 5;
+        minY = vy - 35;
+      }
+      return {'minX': minX, 'maxX': maxX, 'minY': minY, 'maxY': maxY};
+    } else if (b != 0) {
+      final double root = -c / b;
+      return {
+        'minX': root - 10,
+        'maxX': root + 10,
+        'minY': -10,
+        'maxY': 10,
+      };
+    } else {
+      return {
+        'minX': -10,
+        'maxX': 10,
+        'minY': -10,
+        'maxY': 10,
+      };
+    }
+  }
+
   List<(double, double)> _generateDataPoints() {
     // Ensure bounds are valid before generating
     // if (!_validateBounds()) {

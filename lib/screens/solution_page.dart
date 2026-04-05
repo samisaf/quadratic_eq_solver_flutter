@@ -16,9 +16,7 @@ class SolutionPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Equation: ${eq.a}x² + ${eq.b}x + ${eq.c} = 0',
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: TextAlign.center,
+              '${eq.a}x² + ${eq.b}x + ${eq.c} = 0', textAlign: TextAlign.center
             ),
             const SizedBox(height: 20),
             if (eq.a == 0) ...[ // Handle linear case
@@ -27,23 +25,25 @@ class SolutionPage extends ConsumerWidget {
                 style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              if (eq.b != 0) Text('Solution: x = ${(-eq.c / eq.b).toStringAsFixed(3)}')
-              else if (eq.c == 0) const Text('Solution: All x are solutions (0 = 0)')
-              else const Text('Solution: No solution (c = 0, c != 0)'),
+              if (eq.b != 0) Text('Solution: x = ${(-eq.c / eq.b).toStringAsFixed(3)}', style: const TextStyle(fontFamily: 'serif', fontStyle: FontStyle.italic))
+              else if (eq.c == 0) const Text('Solution: x \u2208 \u211D', style: TextStyle(fontFamily: 'serif'))
+              else const Text('Solution: x \u2208 \u2205', style: TextStyle(fontFamily: 'serif')),
 
             ] else ...[ // Quadratic case
               Text(eq.solutions['description'], textAlign: TextAlign.center),
+              const SizedBox(height: 20),
+
               if (eq.solutions['roots'] != null)
                 Text(
-                  'Roots: ${eq.solutions['roots']}',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  'x = ${eq.solutions['roots']}',
+                  // style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'serif', fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center,
                 ),
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
               if (eq.solutions['vertex'] != null)
                 Text(
-                  'Vertex (x, y): ${eq.solutions['vertex']}',
-                  style: const TextStyle(fontSize: 16),
+                  'vertex = ${eq.solutions['vertex']}',
+                  // style: const TextStyle(fontSize: 16, fontFamily: 'serif', fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center,
                 ),
             ]
